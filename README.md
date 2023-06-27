@@ -1,45 +1,81 @@
-# Projeto-Brazeeno
-from flask import Flask, render_template, request, redirect
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Colégio Estadual Olindamir Merlin Claudino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-app = Flask(__name__)
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
 
-users = []
-bets = []
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        users.append({'username': username, 'password': password})
-        return redirect('/login')
-    return render_template('register.html')
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        for user in users:
-            if user['username'] == username and user['password'] == password:
-                # Login successful, redirect to betting page
-                return redirect('/bet')
-        return redirect('/login')
-    return render_template('login.html')
+        section {
+            padding: 20px;
+        }
 
-@app.route('/bet', methods=['GET', 'POST'])
-def bet():
-    if request.method == 'POST':
-        amount = float(request.form['amount'])
-        bet_type = request.form['bet_type']
-        # Process the bet and save it
-        bets.append({'amount': amount, 'bet_type': bet_type})
-        return redirect('/bet')
-    return render_template('bet.html', bets=bets)
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Olindamir Merlin Claudino</h1>
+    </header>
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>Bem-vindo ao Colégio Olindamir</h2>
+        <p>Este é o site oficial do nosso colégio. Aqui você encontrará informações sobre nossos cursos, eventos e muito mais.</p>
+    </section>
+
+    <section id="sobre">
+        <h2>Sobre o colégio</h2>
+        <p>O Colégio Olindamir é uma instituição de ensino comprometida em fornecer educação de qualidade aos nossos alunos. Oferecemos uma ampla gama de cursos em diversas áreas.</p>
+    </section>
+
+    <section id="contato">
+        <h2>Entre em contato</h2>
+        <p>Para mais informações sobre nossos cursos ou qualquer outra dúvida, entre em contato conosco através do seguinte endereço:</p>
+        <p>Telefone: (123) 456-7890</p>
+        <p>Email: info@escolaxyz.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Olindamir Merlin Claudino. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
